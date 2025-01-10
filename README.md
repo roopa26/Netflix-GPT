@@ -3,6 +3,12 @@
 - configured tailwind
 - Header With logo
 - Login Form
+- Sign Up form
+- Routing
+- Form Validation
+- SignIn and SignUp using Firebase authentication
+- navigate to browse page on SignIn
+
 
 # Features
 - Browse (after authentication)

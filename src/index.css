@@ -8,7 +8,15 @@ html, body {
     height: 100vh;
 }
 
+.hide{
+    display: none;
+}
+
 @media screen and (max-width:640px) {
+    .avatarImg{
+        margin-right: 2rem;
+    }
+
     .header{
         margin: 0px;
         padding: 0.5rem;
@@ -23,7 +31,7 @@ html, body {
 
     .formContainer{
         margin-top: 0px;
-        width: 100%;
+        width: auto;
         height: 100vh;
     }
 
