@@ -21,7 +21,7 @@ const Login = () => {
     setIsSignIn(!isSignIn);
   }
 
-  const handleSubmitClick = () => {
+  const handleSubmitClick = async () => {
     const values = [email.current.value, password.current.value];
     if(fullName.current)
       values.push(fullName.current.value)
@@ -30,41 +30,34 @@ const Login = () => {
     setErrorMessage(response);
 
     if(response)  return ;
-    if(!isSignIn){
-      createUserWithEmailAndPassword(auth, ...values)
-      .then((userCredential) => {
-        //const user = userCredential.user;
-        updateProfile(auth.currentUser, {
-          displayName: fullName.current.value, photoURL: "https://avatars.githubusercontent.com/u/8372716?v=4"
-        }).then(() => {
-          const {uid, email, accessToken, displayName, photoURL} = auth.currentUser;
-          dispatch({uid, email, accessToken, displayName, photoURL});
-          navigate("/browse")
-        }).catch((error) => {
-          const errorCode = error.code;
-        const errorMessage = error.message;
-          setErrorMessage(errorCode+" "+errorMessage)
+    if (!isSignIn) {
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, ...values);
+        const user = userCredential.user;
+        await updateProfile(user, {
+          displayName: fullName.current.value,
+          photoURL: "https://avatars.githubusercontent.com/u/8372716?v=4"
         });
+        
+        const { uid, email, accessToken, displayName, photoURL } = auth.currentUser;
+        dispatch(addUser({ uid:uid, email:email, accessToken:accessToken, displayName:displayName, photoURL:photoURL }));
         navigate("/browse");
-      })
-      .catch((error) => {
+      } catch (error) {
         const errorCode = error.code;
         const errorMessage = error.message;
-        setErrorMessage(errorCode+" "+errorMessage)
-      });
-    }
-    else{
-      signInWithEmailAndPassword(auth, ...values)
-      .then((userCredential) => {
-        //const user = userCredential.user;
+        setErrorMessage(errorCode + " " + errorMessage);
+      }
+    } else {
+      try {
+        await signInWithEmailAndPassword(auth, ...values);
         navigate("/browse");
-      })
-      .catch((error) => {
+      } catch (error) {
         const errorCode = error.code;
         const errorMessage = error.message;
-        setErrorMessage(errorCode+" "+errorMessage)
-      });
+        setErrorMessage(errorCode + " " + errorMessage);
+      }
     }
+    
   }
 
   return (
