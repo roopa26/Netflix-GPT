@@ -3,12 +3,11 @@ import Header from './Header';
 import { validateData } from '../utils/validate';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from '../utils/fireBaseConfig';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import { USER_AVATAR } from '../utils/constants';
 
 const Login = () => {
-    const navigate = useNavigate();
     const [isSignIn, setIsSignIn] = useState(true);
     const email = useRef(null);
     const password = useRef(null);
@@ -36,12 +35,11 @@ const Login = () => {
         const user = userCredential.user;
         await updateProfile(user, {
           displayName: fullName.current.value,
-          photoURL: "https://avatars.githubusercontent.com/u/8372716?v=4"
+          photoURL: USER_AVATAR
         });
         
         const { uid, email, accessToken, displayName, photoURL } = auth.currentUser;
         dispatch(addUser({ uid:uid, email:email, accessToken:accessToken, displayName:displayName, photoURL:photoURL }));
-        navigate("/browse");
       } catch (error) {
         const errorCode = error.code;
         const errorMessage = error.message;
@@ -50,7 +48,6 @@ const Login = () => {
     } else {
       try {
         await signInWithEmailAndPassword(auth, ...values);
-        navigate("/browse");
       } catch (error) {
         const errorCode = error.code;
         const errorMessage = error.message;
@@ -64,7 +61,7 @@ const Login = () => {
     <div className='loginBody h-[100vh] w-[100vw] bg-[url("https://assets.nflxext.com/ffe/siteui/vlv3/fc164b4b-f085-44ee-bb7f-ec7df8539eff/d23a1608-7d90-4da1-93d6-bae2fe60a69b/IN-en-20230814-popsignuptwoweeks-perspective_alpha_website_large.jpg")]'>
         <Header/>
        
-        <div className='formContainer bg-black w-[450px] flex flex-col justify-center mb-36 mx-auto left-0 right-0 mt-8 bg-opacity-80'>
+        <div className='formContainer absolute top-20 bg-black w-[450px] flex flex-col justify-center mb-36 mx-auto left-0 right-0 bg-opacity-80'>
            <form onSubmit={ (e)=>{e.preventDefault()} } className='form text-white flex flex-col py-12 px-16'>
             <h1 className='font-bold mb-12 text-4xl text-left'>{isSignIn? "Sign In":"Sign Up"}</h1>
             {!isSignIn &&  (<input ref = {fullName}
@@ -82,7 +79,6 @@ const Login = () => {
             </p>
            </form>
         </div>
-        {/* </div> */}
     </div>
   )  
 }
