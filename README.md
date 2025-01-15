@@ -17,6 +17,9 @@
 - redux store to store nowplaying movie and movie trailer nad random number to get a random trialer clip
 - embeded youtube clip on to the trailer part and make it autoplay and mute
 - tailwind css to make it trailer container awesome
+- added secondary container
+- secondary container has movie list like popular top rated etc section with n number of movies
+- add css to make movie card nice
 
 
 # Features

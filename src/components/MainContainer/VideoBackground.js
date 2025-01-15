@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import useSetTrailerMovie from '../hooks/useSetTrailerMovie';
+import useSetTrailerMovie from '../../hooks/useSetTrailerMovie';
 
 const VideoBackground = () => {
 
@@ -8,9 +8,9 @@ const VideoBackground = () => {
     useSetTrailerMovie(setUrl)
 
   return (
-    <div className='w-screen h-full'>
+    <div className='w-full h-full'>
          <iframe
-      className="w-screen object-contain h-full"
+      className="w-full object-contain h-full"
       src={url}
       title="YouTube video player"
       frameBorder="0"

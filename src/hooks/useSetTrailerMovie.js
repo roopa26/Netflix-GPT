@@ -18,7 +18,8 @@ const useSetTrailerMovie = (setUrl) => {
          const filteredData = movie.results.filter(x => x.type === 'Trailer')
          const trailer = filteredData?.length ? filteredData[0] : movie[0]
          dispatch(addMovieTrailer(trailer));
-         setUrl(`https://www.youtube.com/embed/${trailer.key}?si=RB9YsTNddKn38qeF&autoplay=1&controls=1&mute=1`);
+         if(setUrl)
+         setUrl(`https://www.youtube.com/embed/${trailer.key}?autoplay=1&controls=1&mute=1&loop=1&playlist=${trailer.key}`);
         }
 
      }
