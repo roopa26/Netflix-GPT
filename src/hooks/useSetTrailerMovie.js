@@ -6,6 +6,8 @@ import { getRandomNumber } from "../utils/getRandonNumber";
 
 const useSetTrailerMovie = (setUrl) => {
     const movies = useSelector((store) => store.movies?.nowPlayingMovies);
+    const movieTrailer = useSelector(store => store.movies.movieTrailer)
+
     const dispatch = useDispatch();
     const getAMovieFromNowPlaying = async () => {
         if(movies){
@@ -25,7 +27,7 @@ const useSetTrailerMovie = (setUrl) => {
      }
 
      useEffect(() => {
-         getAMovieFromNowPlaying()
+         !movieTrailer && getAMovieFromNowPlaying()
      }, [])
 
 }

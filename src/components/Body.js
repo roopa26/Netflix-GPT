@@ -1,27 +1,9 @@
-import React, { useEffect } from 'react'
 import Browse from './Browse'
 import Login from './Login'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import {onAuthStateChanged} from 'firebase/auth';
-import {auth} from '../utils/fireBaseConfig';
-import { addUser, removeUser } from '../utils/userSlice';
-import { useDispatch } from 'react-redux';
+import SearchComponent from './SearchPage/SearchComponent';
 
 const Body = () => {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                //SignIn
-             const {uid, email, accessToken, displayName, photoURL} = user;
-            dispatch(addUser({uid, email, accessToken, displayName, photoURL}))
-            } else {
-                //SIgnOut
-              dispatch(removeUser())
-            }
-          });
-    }, [])
 
     const appRouter = createBrowserRouter([
         {
@@ -31,11 +13,15 @@ const Body = () => {
         {
             path: "/browse",
             element: <Browse/>
+        },
+        {
+            path: "/search",
+            element: <SearchComponent/>
         }
     ])
   return (
     
-    <div className='h-full'>
+    <div className='h-screen bg-black'>
         <RouterProvider router={appRouter}></RouterProvider>
     </div>
     

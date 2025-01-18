@@ -20,6 +20,9 @@
 - added secondary container
 - secondary container has movie list like popular top rated etc section with n number of movies
 - add css to make movie card nice
+- added search form
+- css on movie card hover
+- language feature
 
 
 # Features

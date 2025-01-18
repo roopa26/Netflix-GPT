@@ -4,7 +4,7 @@ export const API_OPTIONS = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZmQzNmNjODhlOGRmYTJhM2MzMTBmNmY2ODZkNjc4ZCIsIm5iZiI6MTczNjQ5MjI1Ny42MTIsInN1YiI6IjY3ODBjNGUxNDRkNjQ5ZmZhZTdiNmIzNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nQsVXD2p0E5u72UI0GUJyoGqUC3N_e2KxiulcKaaKNI'
+      Authorization: 'Bearer '+ process.env.REACT_APP_TMDB_KEY
     }
   };
 
@@ -13,3 +13,7 @@ export const NOW_PLAYING_MOVIES = "https://api.themoviedb.org/3/movie/now_playin
 export const POPULAR_MOVIES = "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
 export const TOP_RATED_MOVIES = "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
 export const UPCOMING_MOVIES = 'https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1';
+export const BG_URL = "https://assets.nflxext.com/ffe/siteui/vlv3/fc164b4b-f085-44ee-bb7f-ec7df8539eff/d23a1608-7d90-4da1-93d6-bae2fe60a69b/IN-en-20230814-popsignuptwoweeks-perspective_alpha_website_large.jpg";
+
+export const GPT_KEY = "";
+export const LanguageOptions = [{name:"English", value: "en"},{name:"Hindi", value:"hi"},{name:"Kannada", value:"ka"}]

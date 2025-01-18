@@ -7,11 +7,11 @@ const ContainerForMoviesList = () => {
 
   return (
     <div className='bg-black'>
-    <div className='relative -mt-44 z-10'>
-      <MoviesListContainer title={"Now Playing Movies"} moviesData = {movies.nowPlayingMovies}/>
-      <MoviesListContainer title={"Popular Movies"} moviesData = {movies.popularMovies}/>
-      <MoviesListContainer title={"Top Rated Movies"} moviesData = {movies.topRatedMovies}/>
-      <MoviesListContainer title={"Upcoming Movies"} moviesData = {movies.upcomingMovies}/>
+    <div className='relative -mt-44 z-10 mr-4'>
+      <MoviesListContainer key = {"now_playing"} title={"Now Playing Movies"} moviesData = {movies.nowPlayingMovies}/>
+      <MoviesListContainer key = {"popular"} title={"Popular Movies"} moviesData = {movies.popularMovies}/>
+      <MoviesListContainer key = {"top_rated_movies"} title={"Top Rated Movies"} moviesData = {movies.topRatedMovies}/>
+      <MoviesListContainer key = {"upcoming_movies"} title={"Upcoming Movies"} moviesData = {movies.upcomingMovies}/>
     </div>
   </div>
   )
