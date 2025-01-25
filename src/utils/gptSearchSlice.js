@@ -9,9 +9,12 @@ const gptSearch = createSlice({
     reducers: {
         addShowGpt: (state, action) => {
             state.showGptSearch = !state.showGptSearch;
+        },
+        removeSearchScreen: (state, action) => {
+            state.showGptSearch  = false;
         }
     }
 });
 
-export const { addShowGpt } = gptSearch.actions;
+export const { addShowGpt, removeSearchScreen } = gptSearch.actions;
 export default gptSearch.reducer;

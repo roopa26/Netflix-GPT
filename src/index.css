@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,7 +14,8 @@ html, body {
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-    display: none;
+    /* display: none; */
+    scrollbar-color: red black;
 }
 
 @media screen and (max-width:640px) {
@@ -48,3 +50,26 @@ html, body {
         margin-top: 2rem;
     }
 }
+
+.slider {
+    margin:0 20px;
+    overflow:"hidden";
+    padding:2rem 0;
+  }
+  
+  .slider img {
+    width: 100%;
+    border-radius:10px;
+  }
+  
+  .react-multi-carousel-list {
+  padding: 0rem 0 2rem 0;
+  }
+  
+  .custom-dot-list-style button{
+  border: none;
+  background: rgb(255, 68, 68);
+  }
+  .react-multi-carousel-dot.react-multi-carousel-dot--active button{
+  background: rgb(255, 68, 68) !important;
+  }

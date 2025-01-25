@@ -25,10 +25,12 @@ const Header = () => {
               //SignIn
            const {uid, email, accessToken, displayName, photoURL} = user;
           dispatch(addUser({uid, email, accessToken, displayName, photoURL}))
-          navigate("/browse")
+          localStorage.setItem("isLoggedIn", true)
+          //navigate("/browse")
           } else {
               //SIgnOut
             dispatch(removeUser())
+            localStorage.setItem("isLoggedIn", false)
             navigate("/")
           }
         });
@@ -51,6 +53,7 @@ const Header = () => {
 
   const handleSearchClick = async () => {
     dispatch(addShowGpt());
+    navigate('/browse')
     }
 
   const handleLanguageChange =async (e) => {
@@ -72,7 +75,7 @@ const Header = () => {
 
   return (
     <div className='absolute header h-fit bg-gradient-to-b from-black z-10 w-[98%] py-4 px-12 mx-12 flex justify-between items-center'>
-        <img className= 'w-44  object-contain'
+        <img onClick={() => navigate("/browse")} className= 'w-44  object-contain'
             src = {LOGO}
             alt = "Logo"
         />

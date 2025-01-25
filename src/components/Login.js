@@ -6,6 +6,7 @@ import { auth } from '../utils/fireBaseConfig';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
 import { BG_URL, USER_AVATAR } from '../utils/constants';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [isSignIn, setIsSignIn] = useState(true);
@@ -14,6 +15,7 @@ const Login = () => {
     const fullName = useRef(null);
     const [errorMessage, setErrorMessage] = useState('');
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
   const onToggleHandler = () => {
     setErrorMessage('')
@@ -40,18 +42,24 @@ const Login = () => {
         
         const { uid, email, accessToken, displayName, photoURL } = auth.currentUser;
         dispatch(addUser({ uid:uid, email:email, accessToken:accessToken, displayName:displayName, photoURL:photoURL }));
+        localStorage.setItem("isLoggedIn", true)
+        navigate("/browse")
       } catch (error) {
         const errorCode = error.code;
         const errorMessage = error.message;
         setErrorMessage(errorCode + " " + errorMessage);
+        localStorage.setItem("isLoggedIn", false)
       }
     } else {
       try {
         await signInWithEmailAndPassword(auth, ...values);
+        localStorage.setItem("isLoggedIn", true)
+        navigate("/browse")
       } catch (error) {
         const errorCode = error.code;
         const errorMessage = error.message;
         setErrorMessage(errorCode + " " + errorMessage);
+        localStorage.setItem("isLoggedIn", false)
       }
     }
     
