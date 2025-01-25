@@ -95,7 +95,7 @@ const Header = () => {
                     //src = {isLoggedIn.photoURL}
                     alt = "Avatar"
                     />
-                    <h4 className='ml-2 font-bold'>{isLoggedIn.displayName}</h4>
+                    <h4 className='ml-2 font-bold w-10'>{isLoggedIn.displayName}</h4>
                   </div>
                 <ul className={`w-auto h-auto bg-black mt-4 p-2 rounded-md right-35 leading-7 absolute ${showPopUp ? "" : "hide"}`}>
                     <li><a href="#">Action</a></li>

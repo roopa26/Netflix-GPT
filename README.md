@@ -27,11 +27,6 @@
 - on click of movie card go to details page
 - auto suggest on search
 
-# pending
-- responsive
-- auto scroll
-- protected route
-
 # Features
 - Browse (after authentication)
     - Header
